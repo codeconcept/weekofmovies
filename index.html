@@ -16,22 +16,22 @@
 
     <div class="center">
         <h2>Ajouter un film</h2>
-        <form>
+        <form id="movie-form">
             <div class="form-group">
                 <label for="title">Titre du film</label>
-                <input type="text" class="form-control" id="title" placeholder="Titre du film">
+                <input type="text" class="form-control" id="title" name="title" placeholder="Titre du film">
             </div>
             <div class="form-group">
                 <label for="year">Année du film</label>
-                <input type="number" min="1900" value="2021" class="form-control" id="year" placeholder="Année">
+                <input type="number" min="1900" value="2021" class="form-control" id="year" name="year" placeholder="Année">
             </div>
             <div class="form-group">
                 <label for="duration ">Durée (ex 2h15)</label>
-                <input type="text" class="form-control" id="duration" placeholder="Durée">
+                <input type="text" class="form-control" id="duration" name="duration" placeholder="Durée">
             </div>
             <div class="form-group">
                 <label for="director">Genres</label>
-                <select class="form-control" id="genres" size="9" multiple>
+                <select class="form-control" id="genres" name="genres" size="9" multiple>
                     <option>Action</option>
                     <option>Comédie</option>
                     <option>Drame</option>
