@@ -28,6 +28,8 @@ let selectedDate = {};
 const movieForm = document.querySelector("#movie-form");
 movieForm.addEventListener("submit", addMovie);
 
+const movieList = document.querySelector("#movie-list");
+
 function addMovie(e) {
   e.preventDefault();
   const formData = new FormData(movieForm);
@@ -54,16 +56,15 @@ function saveMovie(movie) {
   localStorage.setItem("movies", JSON.stringify(movies));
 }
 
-
 function displayMovie(date) {
-    let movies = JSON.parse(localStorage.getItem("movies")) || [];
-    let movie = movies.find((movie) => {
-        // retrieve date withour time
-        return movie.date.split('T')[0] === date.split('T')[0]
-    });
-    if (movie) {
-        let movieList = document.querySelector("#movie");
-        movieList.innerHTML = `
+  let movies = JSON.parse(localStorage.getItem("movies")) || [];
+  const moviesAtThisDate = movies.filter((movie) => {
+    // retrieve date without time
+    return movie.date.split("T")[0] === date.split("T")[0];
+  });
+  if (moviesAtThisDate.length === 1) {
+    const movie = moviesAtThisDate[0];
+    movieList.innerHTML = `
         <div class="movie-item">
         <h3>${movie.title}</h3>
         <span>année : ${movie.year}</span>
@@ -71,13 +72,31 @@ function displayMovie(date) {
         <span>genre : ${movie.genres.join(", ")}</span>
         </div>
         `;
-    } else {
-        let movieList = document.querySelector("#movie");
-        movieList.innerHTML = `
+  } else if (moviesAtThisDate.length > 1) {
+    displayMovies(moviesAtThisDate);
+  } else {
+    movieList.innerHTML = `
         <div class="movie-item">
         <h3>Aucun film prévu ce jour là</h3>
         Vous pouvez ajouter un film grâce au formulaire ci-dessous.
         </div>
         `;
-    }
+  }
+}
+
+function displayMovies(movies) {
+  let content = [];
+  movies.forEach((movie) => {
+    const singleMovieHTML = `
+        <div class="movie-item">
+            <h3>${movie.title}</h3>
+            <span>année : ${movie.year}</span>
+            <span>durée : ${movie.duration}</span>
+            <span>genre : ${movie.genres.join(", ")}</span>
+            </div>
+            `;
+    content = [...content, singleMovieHTML];
+  });
+
+  movieList.innerHTML = content.join("");
 }
