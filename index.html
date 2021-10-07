@@ -6,11 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./libs/calendar/vanilla-calendar-min.js"></script>
     <link rel="stylesheet" href="./libs/calendar/vanilla-calendar-min.css">
+    <link rel="stylesheet" href="style.css">
     <script src="./index.js" defer></script>
     <title>Ma semaine de films</title>
 </head>
 <body>
     <h1>Semaine de films</h1>
     <div id="myCalendar" class="vanilla-calendar"></div>
+
+    <div class="center">
+        <h2>Ajouter un film</h2>
+        <form>
+            <div class="form-group">
+                <label for="title">Titre du film</label>
+                <input type="text" class="form-control" id="title" placeholder="Titre du film">
+            </div>
+            <div class="form-group">
+                <label for="year">Année du film</label>
+                <input type="number" min="1900" value="2021" class="form-control" id="year" placeholder="Année">
+            </div>
+            <div class="form-group">
+                <label for="duration ">Durée (ex 2h15)</label>
+                <input type="text" class="form-control" id="duration" placeholder="Durée">
+            </div>
+            <div class="form-group">
+                <label for="director">Genres</label>
+                <select class="form-control" id="genres" size="9" multiple>
+                    <option>Action</option>
+                    <option>Comédie</option>
+                    <option>Drame</option>
+                    <option>Fantastique</option>
+                    <option>Horreur</option>
+                    <option>Policier</option>
+                    <option>Romance</option>
+                    <option>Science-fiction</option>
+                    <option>Thriller</option>
+                </select>
+                <button type="submit">ajouter le film</button>
+        </form>
+    </div>
 </body>
 </html>

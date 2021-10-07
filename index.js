@@ -1,4 +1,4 @@
-let calendar = new VanillaCalendar({
+const calendar = new VanillaCalendar({
   selector: "#myCalendar",
   months: [
     "Janvier",
@@ -18,5 +18,9 @@ let calendar = new VanillaCalendar({
   onSelect: (data, elem) => {
       console.log(data);
       console.log(elem);
+      selectedDate = data;
+      alert(`Vous avez sélectionné le ${new Date(selectedDate.date)}`);
   },
 });
+
+let selectedDate = {};
