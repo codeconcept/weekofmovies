@@ -34,6 +34,6 @@ function addMovie(e) {
   const title = formData.get("title");
   const year = formData.get("year");
   const duration = formData.get("duration");
-  const genres = formData.get("genres");
+  const genres = formData.getAll("genres");
   console.log(title, year, duration, genres);
 }
