@@ -19,6 +19,7 @@ const calendar = new VanillaCalendar({
     console.log(data);
     console.log(elem);
     selectedDate = data;
+    displayMovie(new Date(data.date).toISOString());
   },
 });
 
@@ -51,4 +52,32 @@ function saveMovie(movie) {
   let movies = JSON.parse(localStorage.getItem("movies")) || [];
   movies = [...movies, movie];
   localStorage.setItem("movies", JSON.stringify(movies));
+}
+
+
+function displayMovie(date) {
+    let movies = JSON.parse(localStorage.getItem("movies")) || [];
+    let movie = movies.find((movie) => {
+        // retrieve date withour time
+        return movie.date.split('T')[0] === date.split('T')[0]
+    });
+    if (movie) {
+        let movieList = document.querySelector("#movie");
+        movieList.innerHTML = `
+        <div class="movie-item">
+        <h3>${movie.title}</h3>
+        <span>année : ${movie.year}</span>
+        <span>durée : ${movie.duration}</span>
+        <span>genre : ${movie.genres.join(", ")}</span>
+        </div>
+        `;
+    } else {
+        let movieList = document.querySelector("#movie");
+        movieList.innerHTML = `
+        <div class="movie-item">
+        <h3>Aucun film prévu ce jour là</h3>
+        Vous pouvez ajouter un film grâce au formulaire ci-dessous.
+        </div>
+        `;
+    }
 }
