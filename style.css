@@ -56,3 +56,12 @@ form button {
   padding: 10px;
   cursor: pointer;
 }
+
+.delete {
+  border: 0;
+  box-shadow: none;
+  border-radius: 0px;
+  color: #fff;
+  background-color: #ff5a5f;
+  cursor: pointer;
+}

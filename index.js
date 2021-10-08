@@ -21,6 +21,7 @@ const calendar = new VanillaCalendar({
     selectedDate.date = new Date(data.date).toISOString();
     displayMoviesByDate(selectedDate.date);
   },
+  pastDates: false,
 });
 
 let selectedDate = {};
@@ -73,7 +74,7 @@ function displayMoviesByDate(date) {
         <span>année : ${movie.year}</span>
         <span>durée : ${movie.duration}</span>
         <span>genre : ${movie.genres.join(", ")}</span>
-        <button data-id="${movie.id}">suppr.</button>
+        <button class="delete" data-id="${movie.id}">suppr.</button>
         </div>
         `;
   } else if (moviesAtThisDate.length > 1) {
@@ -97,7 +98,7 @@ function displayMovies(movies) {
             <span>année : ${movie.year}</span>
             <span>durée : ${movie.duration}</span>
             <span>genre : ${movie.genres.join(", ")}</span>
-            <button data-id="${movie.id}">suppr.</button>
+            <button class="delete" data-id="${movie.id}">suppr.</button>
             </div>
             `;
     content = [...content, singleMovieHTML];
